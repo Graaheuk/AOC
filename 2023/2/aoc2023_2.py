@@ -1,10 +1,12 @@
-from mimetypes import init
 import time
-from turtle import pos
+import os
+import sys
 
 # Reading input
 start = time.time()
-f = open('C:/Users/Graaheuk/Desktop/AOC/2023/input.dat','r')
+
+file_path = os.path.dirname(sys.argv[0])
+f= open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
@@ -56,13 +58,9 @@ for line in lines:
 
 sum = 0
 for game in gameList:
-    print('GAME #' + str(game.id))
     sum += game.getPower()
 
-
-print("Part 1 : ", sum)
-
-print("Part 2 : ", )
+print("Part 2 : ", sum)
 
 end = time.time()
 print("Solution time : " + str(end - solutionStart))
