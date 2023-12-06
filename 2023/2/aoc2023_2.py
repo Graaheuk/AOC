@@ -6,7 +6,7 @@ import sys
 start = time.time()
 
 file_path = os.path.dirname(sys.argv[0])
-f= open(file_path + '/input.dat','r')
+f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))

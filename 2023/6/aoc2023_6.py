@@ -6,7 +6,7 @@ import sys
 start = time.time()
 
 file_path = os.path.dirname(sys.argv[0])
-f= open(file_path + '/input.dat','r')
+f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
@@ -42,17 +42,19 @@ t = ''.join(list(filter(None, lines[0].split(': ')[1].split(' '))))
 t = t.strip()
 dist = ''.join(list(filter(None, lines[1].split(': ')[1].split(' '))))
 
-distanceList = []
+distanceList = [0,0]
 
-for i in range(int(t)):
+i = 2
+while distanceList[i-1] >= distanceList[i-2] and i < int(t):
     distanceList += [i * (int(t) - i)]
+    i += 1
 
 raceScore = 0
 for distance in distanceList:
     if distance > int(dist):
         raceScore += 1
 
-print("Part 2 : ", raceScore)
+print("Part 2 : ", 2*(raceScore-2)+1)
 end = time.time()
 print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))

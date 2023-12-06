@@ -6,7 +6,7 @@ import sys
 start = time.time()
 
 file_path = os.path.dirname(sys.argv[0])
-f= open(file_path + '/input.dat','r')
+f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
@@ -48,7 +48,7 @@ def findLastDigit(line):
 
 sum = 0
 for line in lines:
-    sum += findFirstDigit(line)*10 + findLastDigit(line)
+    sum += findFirstDigit(line) * 10 + findLastDigit(line)
     
 print("Part 2 : ", sum)
 
