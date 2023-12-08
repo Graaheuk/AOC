@@ -10,8 +10,8 @@ f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
+# Solution 1
 
-# Solution
 solutionStart = time.time()
 
 def findTotalNumber(lines, x, y):
@@ -47,9 +47,10 @@ for x in range(1,len(lines)-1):
             totalSum += toAdd
 
 print("Part 1 : ", totalSum)
-
+end = time.time()
 print("Solution 1 time : " + str(end - solutionStart))
 solution2Start = time.time()
+# Solution 2
 
 totalSum = 0
 for x in range(1,len(lines)-1):

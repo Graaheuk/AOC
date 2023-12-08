@@ -10,8 +10,8 @@ f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
+# Solution 1
 
-# Solution
 solutionStart = time.time()
 
 totalScore = 0
@@ -40,6 +40,7 @@ print("Part 1 : ", totalScore)
 end = time.time()
 print("Solution 1 time : " + str(end - solutionStart))
 solution2Start = time.time()
+# Solution 2
 
 totalScore = []
 for line in lines:

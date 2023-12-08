@@ -13,6 +13,7 @@ end = time.time()
 print("Time to read the file : " + str(end - start))
 solutionStart = time.time()
 # Solution 1
+
 steps = lines[0].strip()
 
 way = dict()
@@ -44,10 +45,10 @@ def arrived(position):
     return True
 
 def pgcd(a,b):
-    if b==0:
+    if b == 0:
         return a
     else:
-        r=a%b
+        r = a % b
         return pgcd(b,r)
 
 def lcm(a,b):
@@ -72,9 +73,9 @@ for step in position:
     stepsCount += [stepCount]
     newStep += [step]
 
-gcd = reduce(lambda x,y:lcm(x,y), stepsCount)
+res = reduce(lambda x,y:lcm(x,y), stepsCount)
 
-print("Part 2 : ", gcd)
+print("Part 2 : ", res)
 end = time.time()
 print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))

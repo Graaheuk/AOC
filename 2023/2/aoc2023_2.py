@@ -63,5 +63,5 @@ for game in gameList:
 print("Part 2 : ", sum)
 
 end = time.time()
-print("Solution time : " + str(end - solutionStart))
+print("Solution 2 time : " + str(end - solutionStart))
 print("Total time : " + str(end - start))

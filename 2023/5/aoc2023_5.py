@@ -10,9 +10,8 @@ f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
-
-# Solution
 solutionStart = time.time()
+# Solution 1
 
 def applyConversion(seed, convList):
     for converter in convList:
@@ -51,6 +50,7 @@ print("Part 1 : ", min(tmp))
 end = time.time()
 print("Solution 1 time : " + str(end - solutionStart))
 solution2Start = time.time()
+# Solution 2
 
 def applyConversionToRange(seedRange, converter):
     for i in range(len(converter)):

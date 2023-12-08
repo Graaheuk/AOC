@@ -10,9 +10,8 @@ f = open(file_path + '/input.dat','r')
 lines = f.readlines()
 end = time.time()
 print("Time to read the file : " + str(end - start))
-
-# Solution
 solutionStart = time.time()
+# Solution 1
 
 sum = 0
 for line in lines:
@@ -20,6 +19,10 @@ for line in lines:
     sum += int(tmp[0]+tmp[-1])
     
 print("Part 1 : ", sum)
+end = time.time()
+print("Solution 1 time : " + str(end - solutionStart))
+solution2Start = time.time()
+# Solution 2
 
 REPLACEMENTS = [("one", 1),("two", 2),("three", 3),("four", 4),("five", 5),("six", 6),("seven", 7),("eight", 8),("nine", 9)]
 
@@ -30,7 +33,8 @@ def findFirstDigit(line):
         else:
             for old, new in REPLACEMENTS:
                 if line[i:i+len(old)] == old:
-                    return new
+                    return int(new)
+    return 1
 
 def findLastDigit(line):
     found=False
@@ -42,9 +46,10 @@ def findLastDigit(line):
             for old, new in REPLACEMENTS:
                 if line[i:i+len(old)] == old:
                     found=True
-                    return new
+                    return int(new)
     if not found:
         return findFirstDigit(line)
+    return 1
 
 sum = 0
 for line in lines:
@@ -53,5 +58,5 @@ for line in lines:
 print("Part 2 : ", sum)
 
 end = time.time()
-print("Solution time : " + str(end - solutionStart))
+print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))
