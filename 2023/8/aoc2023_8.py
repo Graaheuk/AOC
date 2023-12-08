@@ -2,6 +2,7 @@ import time
 import os
 import sys
 from functools import reduce
+from math import gcd
 
 # Reading input
 start = time.time()
@@ -44,15 +45,8 @@ def arrived(position):
             return False
     return True
 
-def pgcd(a,b):
-    if b == 0:
-        return a
-    else:
-        r = a % b
-        return pgcd(b,r)
-
 def lcm(a,b):
-    return a * b // pgcd(a,b)
+    return a * b // gcd(a,b)
 
 position = []
 for step in way.keys():
