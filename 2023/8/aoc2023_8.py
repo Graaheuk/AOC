@@ -2,7 +2,7 @@ import time
 import os
 import sys
 from functools import reduce
-from math import gcd
+from math import lcm
 
 # Reading input
 start = time.time()
@@ -44,9 +44,6 @@ def arrived(position):
         if p[-1]!='Z':
             return False
     return True
-
-def lcm(a,b):
-    return a * b // gcd(a,b)
 
 position = []
 for step in way.keys():
