@@ -51,8 +51,6 @@ for i in range(len(space)):
         if space[i][j]=='#':
             galaxies += [(i,j)]
 
-
-
 pairs = []
 while len(galaxies)>1:
     for i in range(1, len(galaxies)):
@@ -104,14 +102,14 @@ res = 0
 for pair in pairs:
     toAdd = 0
     for x in emptyX:
-        if pair[0][0] < x and pair[1][0] > x or pair[0][0] > x and pair[1][0] < x:
-            toAdd += 1000000
+        if pair[0][0] <= x and pair[1][0] >= x or pair[0][0] >= x and pair[1][0] <= x:
+            toAdd += 1000000 - 1
     for y in emptyY:
-        if pair[0][1] < y and pair[1][1] > y or pair[0][1] > y and pair[1][1] < y:
-            toAdd += 1000000
+        if pair[0][1] <= y and pair[1][1] >= y or pair[0][1] >= y and pair[1][1] <= y:
+            toAdd += 1000000 - 1
     res += abs(pair[0][0]-pair[1][0]) + abs(pair[0][1] - pair[1][1]) + toAdd
 
-print("Part 2 : ", res-82)
+print("Part 2 : ", res)
 end = time.time()
 print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))
