@@ -1,29 +1,36 @@
-## 2023
+# Advent of code
 
-| Days | Completion      |
-| ---- | --------------- |
-| 1    | ✅              |
-| 2    | ✅              |
-| 3    | ✅              |
-| 4    | ✅              |
-| 5    | ✅              |
-| 6    | ✅              |
-| 7    | ✅              |
-| 8    | ✅              |
-| 9    | ✅              |
-| 10   | Give up for now |
-| 11   | ✅              |
-| 12   | Give up for now |
-| 13   | Part 2 à finir  |
-| 14   |                 |
-| 15   |                 |
-| 16   |                 |
-| 17   |                 |
-| 18   |                 |
-| 19   |                 |
-| 20   |                 |
-| 21   |                 |
-| 22   |                 |
-| 23   |                 |
-| 24   |                 |
-| 25   |                 |
+Un peu de python pour cet AOC
+
+![Snek](snek.jpg "Snek class")
+
+
+## 2023 Completion
+
+| Days                                      | Completion |
+| ----------------------------------------- | --- |
+| Day 1: Trebuchet?!                        | ✅ |
+| Day 2: Cube Conundrum                     | ✅ |
+| Day 3: Gear Ratios                        | ✅ |
+| Day 4: Scratchcards                       | ✅ |
+| Day 5: If You Give A Seed A Fertilizer    | ✅ |
+| Day 6: Wait For It                        | ✅ |
+| Day 7: Camel Cards                        | ✅ |
+| Day 8: Haunted Wasteland                  | ✅ |
+| Day 9: Mirage Maintenance                 | ✅ |
+| Day 10: Pipe Maze                         | Give up for now |
+| Day 11: Cosmic Expansion                  | ✅ |
+| Day 12: Hot Springs                       | Give up for now |
+| Day 13: Point of Incidence                | Part 2 à finir |
+| Day 14: Parabolic Reflector Dish          | Part 2 à finir |
+| 15                                        |                 |
+| 16                                        |                 |
+| 17                                        |                 |
+| 18                                        |                 |
+| 19                                        |                 |
+| 20                                        |                 |
+| 21                                        |                 |
+| 22                                        |                 |
+| 23                                        |                 |
+| 24                                        |                 |
+| 25                                        |                 |

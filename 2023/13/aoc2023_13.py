@@ -83,7 +83,7 @@ def findNewMirror(pattern, old):
 
 res = 0
 for pattern in patternList:
-    old = findHMirror(pattern) + findVMirror(pattern)
+    old = 100 * findHMirror(pattern) + findVMirror(pattern)
     res += findNewMirror(pattern, old)
 
 print("Part 2 : ", res)
