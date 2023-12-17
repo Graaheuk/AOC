@@ -15,204 +15,177 @@ print("Time to read the file : " + str(end - start))
 solutionStart = time.time()
 # Solution 1
 
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(7300)
+
+LEFT, RIGHT, UP, DOWN = (0,-1), (0,1), (-1,0), (1,0)
 
 def printT(lines):
     for i in lines:
         print(i)
     print()
 
-def initLight():
-    light = []
-    for line in mirror:
+def showMap(mirror, seen):
+    res = set()
+    for line in seen:
+        res.add((line[0], line[1]))
+    for i in range(len(mirror)):
         tmp = ''
-        for c in line:
-            tmp += '.'
-        light += [tmp]
-    return light
+        for j in range(len(mirror[i])):
+            if (i,j) in res:
+                tmp += '#'
+            else:
+                tmp += mirror[i][j]
+        print(tmp)
+    print()
 
-LEFT, RIGHT, UP, DOWN = (0,-1), (0,1), (-1,0), (1,0)
+def countRes(seen):
+    res = set()
+    for line in seen:
+        res.add((line[0], line[1]))
+    return len(res)
 
-def goRight(mirror, light, pos, seen):
-    light[pos[0]] = light[pos[0]][:pos[1]] + '#' + light[pos[0]][pos[1]+1:]
+def goRight(mirror, pos, seen):
     nextPos = (pos[0] + RIGHT[0], pos[1] + RIGHT[1])
-    if (pos[0], pos[1], 'r') in seen or nextPos[1] >= len(mirror[0]):
+    if [pos[0], pos[1], 'r'] in seen:
         return
-    seen += (pos[0], pos[1], 'r')
-    if mirror[nextPos[0]][nextPos[1]] == '.':
-        goRight(mirror, light, nextPos, seen)
-    elif mirror[nextPos[0]][nextPos[1]] == '-':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goRight(mirror, light, nextPos, seen)
+    seen += [[pos[0], pos[1], 'r']]
+    if nextPos[1] >= len(mirror[0]):
+        return
+    if mirror[nextPos[0]][nextPos[1]] in '.-':
+        goRight(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '|':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goUp(mirror, light, nextPos, seen)
-        goDown(mirror, light, nextPos, seen)
+        goUp(mirror, nextPos, seen)
+        goDown(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '/':
-        goUp(mirror, light, nextPos, seen)
+        goUp(mirror,  nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == 'A':
-        goDown(mirror, light, nextPos, seen)
+        goDown(mirror, nextPos, seen)
 
-def goLeft(mirror, light, pos, seen):
-    light[pos[0]] = light[pos[0]][:pos[1]] + '#' + light[pos[0]][pos[1]+1:]
+def goLeft(mirror, pos, seen):
     nextPos = (pos[0] + LEFT[0], pos[1] + LEFT[1])
-    if (pos[0], pos[1], 'l') in seen or nextPos[1] < 0:
+    if [pos[0], pos[1], 'l'] in seen:
         return
-    seen += (pos[0], pos[1], 'l')
-    if mirror[nextPos[0]][nextPos[1]] == '.':
-        goLeft(mirror, light, nextPos, seen)
-    elif mirror[nextPos[0]][nextPos[1]] == '-':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goLeft(mirror, light, nextPos, seen)
+    seen += [[pos[0], pos[1], 'l']]
+    if nextPos[1] < 0:
+        return
+    if mirror[nextPos[0]][nextPos[1]] in '.-':
+        goLeft(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '|':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goUp(mirror, light, nextPos, seen)
-        goDown(mirror, light, nextPos, seen)
+        goUp(mirror, nextPos, seen)
+        goDown(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '/':
-        goDown(mirror, light, nextPos, seen) 
+        goDown(mirror, nextPos, seen) 
     elif mirror[nextPos[0]][nextPos[1]] == 'A':
-        goUp(mirror, light, nextPos, seen)
+        goUp(mirror, nextPos, seen)
 
-def goUp(mirror, light, pos, seen):
-    light[pos[0]] = light[pos[0]][:pos[1]] + '#' + light[pos[0]][pos[1]+1:]
+def goUp(mirror, pos, seen):
     nextPos = (pos[0] + UP[0], pos[1] + UP[1])
-    if (pos[0], pos[1], 'u') in seen or nextPos[0] < 0:
+    if [pos[0], pos[1], 'u'] in seen:
         return
-    seen += (pos[0], pos[1], 'u')
-    if mirror[nextPos[0]][nextPos[1]] == '.':
-        goUp(mirror, light, nextPos, seen)
+    seen += [[pos[0], pos[1], 'u']]
+    if nextPos[0] < 0:
+        return
+    if mirror[nextPos[0]][nextPos[1]] in '.|':
+        goUp(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '-':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goLeft(mirror, light, nextPos, seen)
-        goRight(mirror, light, nextPos, seen)
-    elif mirror[nextPos[0]][nextPos[1]] == '|':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goUp(mirror, light, nextPos, seen)
+        goLeft(mirror, nextPos, seen)
+        goRight(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '/':
-        goRight(mirror, light, nextPos, seen)
+        goRight(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == 'A':
-        goLeft(mirror, light, nextPos, seen)
+        goLeft(mirror, nextPos, seen)
 
-def goDown(mirror, light, pos, seen):
-    light[pos[0]] = light[pos[0]][:pos[1]] + '#' + light[pos[0]][pos[1]+1:]
+def goDown(mirror, pos, seen):
     nextPos = (pos[0] + DOWN[0], pos[1] + DOWN[1])
-    if (pos[0], pos[1], 'd') in seen or nextPos[0] >= len(mirror):
+    if [pos[0], pos[1], 'd'] in seen:
         return
-    seen += (pos[0], pos[1], 'd')
-    if mirror[nextPos[0]][nextPos[1]] == '.':
-        goDown(mirror, light, nextPos, seen)
+    seen += [[pos[0], pos[1], 'd']]
+    if nextPos[0] >= len(mirror):
+        return
+    if mirror[nextPos[0]][nextPos[1]] in '.|':
+        goDown(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '-':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goLeft(mirror, light, nextPos, seen)
-        goRight(mirror, light, nextPos, seen)
-    elif mirror[nextPos[0]][nextPos[1]] == '|':
-        if light[nextPos[0]][nextPos[1]] == '#':
-            return
-        goDown(mirror, light, nextPos, seen)
+        goLeft(mirror, nextPos, seen)
+        goRight(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == '/':
-        goLeft(mirror, light, nextPos, seen)
+        goLeft(mirror, nextPos, seen)
     elif mirror[nextPos[0]][nextPos[1]] == 'A':
-        goRight(mirror, light, nextPos, seen)
+        goRight(mirror, nextPos, seen)
 
 pos = (0,0)
 seen = []
-light = initLight()
 
 if mirror[0][0] == '.':
-    goRight(mirror, light, pos, seen)
+    goRight(mirror, pos, seen)
 else:
-    goDown(mirror, light, pos, seen)
+    goDown(mirror, pos, seen)
 
-res = 0
-for line in light:
-    res += line.count('#')
-
-print("Part 1 : ", res)
+print("Part 1 : ", countRes(seen))
 end = time.time()
 print("Solution 1 time : " + str(end - solutionStart))
 solution2Start = time.time()
 # Solution 2
 
-def startFromLeft(mirror, pos, seen):
-    light = initLight()
+def startFromLeft(mirror, pos):
+    seen = []
     if mirror[pos[0]][pos[1]] in '.-':
-        goRight(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '/':
-        goUp(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in 'A':
-        goDown(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '|':
-        goUp(mirror, light, pos, seen)
-        goDown(mirror, light, pos, seen)
-    res = 0
-    for line in light:
-        res += line.count('#')
-    return res
+        goRight(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '/':
+        goUp(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == 'A':
+        goDown(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '|':
+        goUp(mirror, pos, seen)
+        goDown(mirror, pos, seen)
+    return countRes(seen)
 
-def startFromRight(mirror, pos, seen):
-    light = initLight()
+def startFromRight(mirror, pos):
+    seen = []
     if mirror[pos[0]][pos[1]] in '.-':
-        goLeft(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '/':
-        goDown(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in 'A':
-        goUp(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '|':
-        goDown(mirror, light, pos, seen)
-        goUp(mirror, light, pos, seen)
-    res = 0
-    for line in light:
-        res += line.count('#')
-    return res
+        goLeft(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '/':
+        goDown(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == 'A':
+        goUp(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '|':
+        goDown(mirror, pos, seen)
+        goUp(mirror, pos, seen)
+    return countRes(seen)
 
-def startFromDown(mirror, pos, seen):
-    light = initLight()
+def startFromDown(mirror, pos):
+    seen = []
     if mirror[pos[0]][pos[1]] in '.|':
-        goUp(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '/':
-        goRight(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in 'A':
-        goLeft(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '-':
-        goLeft(mirror, light, pos, seen)
-        goRight(mirror, light, pos, seen)
-    res = 0
-    for line in light:
-        res += line.count('#')
-    return res
+        goUp(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '/':
+        goRight(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == 'A':
+        goLeft(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '-':
+        goLeft(mirror, pos, seen)
+        goRight(mirror, pos, seen)
+    return countRes(seen)
 
-def startFromUp(mirror, pos, seen):
-    light = initLight()
+def startFromUp(mirror, pos):
+    seen = []
     if mirror[pos[0]][pos[1]] in '.|':
-        goDown(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '/':
-        goLeft(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in 'A':
-        goRight(mirror, light, pos, seen)
-    if mirror[pos[0]][pos[1]] in '-':
-        goLeft(mirror, light, pos, seen)
-        goRight(mirror, light, pos, seen)
-    res = 0
-    for line in light:
-        res += line.count('#')
-    return res
+        goDown(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '/':
+        goLeft(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == 'A':
+        goRight(mirror, pos, seen)
+    if mirror[pos[0]][pos[1]] == '-':
+        goLeft(mirror, pos, seen)
+        goRight(mirror, pos, seen)
+    return countRes(seen)
 
-best = 0
-for i in range(0,len(mirror),2):
-    print(i)
-    best = max(startFromUp(mirror, (i, 0), seen), best)
-    best = max(startFromRight(mirror, (len(mirror[0])-1, i), seen), best)
-    best = max(startFromDown(mirror, (i, len(mirror)-1), seen), best)
-    best = max(startFromLeft(mirror, (0, i), seen), best)
+best = []
+for i in range(0,len(mirror)):
+    best.append(startFromLeft(mirror, (i, 0)))
+    best.append(startFromDown(mirror, (len(mirror[0])-1, i)))
+    best.append(startFromRight(mirror, (i, len(mirror)-1)))
+    best.append(startFromUp(mirror, (0, i)))
 
-print("Part 2 : ", best)
+print("Part 2 : ", max(best))
 end = time.time()
 print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))
