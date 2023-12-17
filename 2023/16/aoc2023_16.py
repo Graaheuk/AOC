@@ -5,7 +5,7 @@ import sys
 # Reading input
 start = time.time()
 
-# FIND AND REPLACE '\' WITH 'A'
+# FIND AND REPLACE '\' WITH 'A' ON THE INPUT FILE
 
 file_path = os.path.dirname(sys.argv[0])
 f = open(file_path + "/input.dat",'r')

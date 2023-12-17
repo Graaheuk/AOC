@@ -18,6 +18,7 @@ def doHash(input):
     for j in input:
         toAdd = ((toAdd + ord(j)) * 17) % 256
     return toAdd
+
 sum = 0
 for i in input:
     sum += doHash(i)
@@ -37,17 +38,16 @@ for cmd in input:
     elif cmd[-2] == '=':
         tag = cmd[:-2]
         h = doHash(tag)
-        len_ = int(cmd[-1])
-        if tag in [n for (n,v) in boxes[h]]:
-            boxes[h] = [(n, len_ if tag==n else v) for (n,v) in boxes[h]]
+        len = int(cmd[-1])
+        if tag in [n for (n,_) in boxes[h]]:
+            boxes[h] = [(n, len if tag==n else v) for (n,v) in boxes[h]]
         else:
-            boxes[h].append((tag, len_))
+            boxes[h].append((tag, len))
 
 sum = 0
 for i,box in enumerate(boxes):
     for j,(n,v) in enumerate(box):
         sum += (i + 1) * (j + 1) * v
-
 
 print("Part 2 : ", sum)
 end = time.time()
