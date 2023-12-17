@@ -15,7 +15,7 @@ print("Time to read the file : " + str(end - start))
 solutionStart = time.time()
 # Solution 1
 
-sys.setrecursionlimit(7300)
+sys.setrecursionlimit(10000)
 
 LEFT, RIGHT, UP, DOWN = (0,-1), (0,1), (-1,0), (1,0)
 

@@ -23,8 +23,8 @@ Un peu de python pour cet AOC
 | Day 13: Point of Incidence             | Part 2 à finir  |
 | Day 14: Parabolic Reflector Dish       | Part 2 à finir  |
 | Day 15: Lens Library                   | ✅              |
-| 16                                     |                 |
-| 17                                     |                 |
+| Day 16: The Floor Will Be Lava         | Part 2 à opti   |
+| Day 17: Clumsy Crucible                |                 |
 | 18                                     |                 |
 | 19                                     |                 |
 | 20                                     |                 |
