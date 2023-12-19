@@ -24,9 +24,9 @@ Un peu de python pour cet AOC
 | Day 14: Parabolic Reflector Dish       | Part 2 à finir  |
 | Day 15: Lens Library                   | ✅              |
 | Day 16: The Floor Will Be Lava         | Part 2 à opti   |
-| Day 17: Clumsy Crucible                |                 |
-| 18                                     |                 |
-| 19                                     |                 |
+| Day 17: Clumsy Crucible                | Give up for now |
+| Day 18: Lavaduct Lagoon                | ✅ à opti       |
+| Day 19: Aplenty                        |                 |
 | 20                                     |                 |
 | 21                                     |                 |
 | 22                                     |                 |
