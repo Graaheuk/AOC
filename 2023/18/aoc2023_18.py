@@ -62,7 +62,6 @@ for direction in plan:
             actual = (actual[0] + UP[0], actual[1] + UP[1])
             terrain.append(actual)
 
-grid = []
 res = int(shoelace(terrain)) + boundary // 2 + 1
 
 
@@ -73,8 +72,33 @@ print("Solution 1 time : " + str(end - solutionStart))
 solution2Start = time.time()
 # Solution 2
 
+terrain = []
+actual = (0,0)
+boundary = 0
+for line in lines:
+    inp = line.split()[2]
+    direction = int(inp[2:7],16)
+    boundary += direction
+    if inp[7]=='0':
+        for i in range(direction):
+            actual = (actual[0] + RIGHT[0], actual[1] + RIGHT[1])
+            terrain.append(actual)
+    if inp[7]=='1':
+        for i in range(direction):
+            actual = (actual[0] + DOWN[0], actual[1] + DOWN[1])
+            terrain.append(actual)
+    if inp[7]=='2':
+        for i in range(direction):
+            actual = (actual[0] + LEFT[0], actual[1] + LEFT[1])
+            terrain.append(actual)
+    if inp[7]=='3':
+        for i in range(direction):
+            actual = (actual[0] + UP[0], actual[1] + UP[1])
+            terrain.append(actual)
 
-print("Part 2 : ", )
+res = int(shoelace(terrain)) + boundary // 2 + 1
+
+print("Part 2 : ", res)
 end = time.time()
 print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))

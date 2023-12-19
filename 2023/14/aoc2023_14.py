@@ -90,14 +90,27 @@ def cycle(lines):
     return tiltEast(t)
 
 cycles = []
-for i in range(10):
+breake=False
+for i in range(1000000000):
+    if breake:
+        break
     cy = cycle(lines)
-    if not cy in cycles:
+    for cyCmp in cycles:
+        if cy == cyCmp:
+            print(i)
+            breake=True
+    else:
+        lines = cy
         cycles.append(cy)
-        print(i)
 
+tiltedPlateform = cycles[1][::]
+res = 0
+for i in range(len(tiltedPlateform)):
+    for j in range(len(tiltedPlateform[i])):
+        if tiltedPlateform[i][j] == 'O':
+            res += len(tiltedPlateform) - i
 
-print("Part 2 : ", cycles)
+print("Part 2 : ", res)
 end = time.time()
 print("Solution 2 time : " + str(end - solution2Start))
 print("Total time : " + str(end - start))
