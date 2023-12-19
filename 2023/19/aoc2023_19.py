@@ -15,7 +15,7 @@ solutionStart = time.time()
 
 def isAccepted(part, workflow):
     step = 'in'
-    while step != 'A' or step != 'R':
+    while step != 'A' and step != 'R':
         for i in range(len(workflow[step])):
             if not ':' in workflow[step][i]:
                 step = workflow[step][i]
@@ -57,8 +57,6 @@ for i in workflows:
     name = splited[0]
     rest = splited[1][:len(splited[1])-1].split(',')
     workflow[name] = rest
-
-print(workflow)
 
 parts = lines[1].split('\n')
 part = []
