@@ -23,11 +23,11 @@ Un peu de python pour cet AOC
 | Day 13: Point of Incidence             | Part 2 à finir  |
 | Day 14: Parabolic Reflector Dish       | Part 2 à finir  |
 | Day 15: Lens Library                   | ✅              |
-| Day 16: The Floor Will Be Lava         | Part 2 à opti   |
+| Day 16: The Floor Will Be Lava         | ✅ à opti       |
 | Day 17: Clumsy Crucible                | Give up for now |
 | Day 18: Lavaduct Lagoon                | ✅ à opti       |
-| Day 19: Aplenty                        |                 |
-| 20                                     |                 |
+| Day 19: Aplenty                        | ✅              |
+| Day 20: Pulse Propagation              | WIP             |
 | 21                                     |                 |
 | 22                                     |                 |
 | 23                                     |                 |
