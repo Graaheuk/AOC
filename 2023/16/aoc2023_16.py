@@ -46,9 +46,9 @@ def countRes(seen):
 
 def goRight(mirror, pos, seen):
     nextPos = (pos[0] + RIGHT[0], pos[1] + RIGHT[1])
-    if [pos[0], pos[1], 'r'] in seen:
+    if (pos[0], pos[1], 'r') in seen:
         return
-    seen += [[pos[0], pos[1], 'r']]
+    seen.add((pos[0], pos[1], 'r'))
     if nextPos[1] >= len(mirror[0]):
         return
     if mirror[nextPos[0]][nextPos[1]] in '.-':
@@ -63,9 +63,9 @@ def goRight(mirror, pos, seen):
 
 def goLeft(mirror, pos, seen):
     nextPos = (pos[0] + LEFT[0], pos[1] + LEFT[1])
-    if [pos[0], pos[1], 'l'] in seen:
+    if (pos[0], pos[1], 'l') in seen:
         return
-    seen += [[pos[0], pos[1], 'l']]
+    seen.add((pos[0], pos[1], 'l'))
     if nextPos[1] < 0:
         return
     if mirror[nextPos[0]][nextPos[1]] in '.-':
@@ -80,9 +80,9 @@ def goLeft(mirror, pos, seen):
 
 def goUp(mirror, pos, seen):
     nextPos = (pos[0] + UP[0], pos[1] + UP[1])
-    if [pos[0], pos[1], 'u'] in seen:
+    if (pos[0], pos[1], 'u') in seen:
         return
-    seen += [[pos[0], pos[1], 'u']]
+    seen.add((pos[0], pos[1], 'u'))
     if nextPos[0] < 0:
         return
     if mirror[nextPos[0]][nextPos[1]] in '.|':
@@ -97,9 +97,9 @@ def goUp(mirror, pos, seen):
 
 def goDown(mirror, pos, seen):
     nextPos = (pos[0] + DOWN[0], pos[1] + DOWN[1])
-    if [pos[0], pos[1], 'd'] in seen:
+    if (pos[0], pos[1], 'd') in seen:
         return
-    seen += [[pos[0], pos[1], 'd']]
+    seen.add((pos[0], pos[1], 'd'))
     if nextPos[0] >= len(mirror):
         return
     if mirror[nextPos[0]][nextPos[1]] in '.|':
@@ -113,7 +113,7 @@ def goDown(mirror, pos, seen):
         goRight(mirror, nextPos, seen)
 
 pos = (0,0)
-seen = []
+seen = set()
 
 if mirror[0][0] == '.':
     goRight(mirror, pos, seen)
@@ -127,7 +127,7 @@ solution2Start = time.time()
 # Solution 2
 
 def startFromLeft(mirror, pos):
-    seen = []
+    seen = set()
     if mirror[pos[0]][pos[1]] in '.-':
         goRight(mirror, pos, seen)
     if mirror[pos[0]][pos[1]] == '/':
@@ -140,7 +140,7 @@ def startFromLeft(mirror, pos):
     return countRes(seen)
 
 def startFromRight(mirror, pos):
-    seen = []
+    seen = set()
     if mirror[pos[0]][pos[1]] in '.-':
         goLeft(mirror, pos, seen)
     if mirror[pos[0]][pos[1]] == '/':
@@ -153,7 +153,7 @@ def startFromRight(mirror, pos):
     return countRes(seen)
 
 def startFromDown(mirror, pos):
-    seen = []
+    seen = set()
     if mirror[pos[0]][pos[1]] in '.|':
         goUp(mirror, pos, seen)
     if mirror[pos[0]][pos[1]] == '/':
@@ -166,7 +166,7 @@ def startFromDown(mirror, pos):
     return countRes(seen)
 
 def startFromUp(mirror, pos):
-    seen = []
+    seen = set()
     if mirror[pos[0]][pos[1]] in '.|':
         goDown(mirror, pos, seen)
     if mirror[pos[0]][pos[1]] == '/':

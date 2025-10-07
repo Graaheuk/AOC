@@ -16,6 +16,7 @@ solutionStart = time.time()
 
 class Flipflop:
     pulseReturn = -1
+
     def __init__(self, name, output) -> None:
         self.name = name
         self.output = output
@@ -28,7 +29,7 @@ class Flipflop:
         return self.pulseReturn
 
 class Conjunction:
-    state = -1
+    pulseReturn = -1
 
     def __init__(self, name, output) -> None:
         self.name = name
@@ -39,7 +40,7 @@ class Conjunction:
             self.pulseReturn = -self.pulseReturn
 
     def outPulse(self):
-        return self.state
+        return self.pulseReturn
 
 modules = dict()
 for line in lines:
@@ -51,16 +52,17 @@ state = [('broadcaster', -1)]
 queue = deque(state)
 while queue:
     actual, pulse = queue.popleft()
+    key=''
     for key in modules.keys():
         if actual in key:
-            next = key
-    if next == 'broadcaster':
-        for i in modules[next]:
+            break
+    if key == 'broadcaster':
+        for i in modules[key]:
             queue.append((i, pulse))
-    elif next[0] == '%':
+    elif key[0] == '%':
         for i in modules[next]:
             queue.append((i, -pulse))
-    elif next[0] == '&':
+    elif key[0] == '&':
         for i in modules[next]:
             queue.append((i, -pulse))
     print()

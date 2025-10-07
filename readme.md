@@ -28,7 +28,7 @@ Un peu de python pour cet AOC
 | Day 18: Lavaduct Lagoon                | ✅ à opti       |
 | Day 19: Aplenty                        | ✅              |
 | Day 20: Pulse Propagation              | WIP             |
-| 21                                     |                 |
+| Day 21: Step Counter                   | WIP             |
 | 22                                     |                 |
 | 23                                     |                 |
 | 24                                     |                 |
